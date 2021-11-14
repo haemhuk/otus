@@ -1,0 +1,23 @@
+version: "3.3"
+services:
+  web:
+    image: kaizent/otus_homework:1.0
+    container_name: map-api-app
+    environment:
+      DOCKER_RUN: docker-compose
+    volumes:
+      - ./manifests/kubernetes/app_config.yaml:/code/manifests/kubernetes/app_config.yaml
+      - ./manifests/kubernetes/app_secret.yaml:/code/manifests/kubernetes/app_secret.yaml
+    ports:
+        - "80:8000"
+    networks:
+      front_net:
+        aliases:
+          - web
+
+networks:
+  front_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: "10.20.30.0/24"

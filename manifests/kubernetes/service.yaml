@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: map-api-service
+  namespace: map
+  labels:
+    app: map-api-service
+spec:
+  selector:
+    app: map-api-app
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: web
+  type: ClusterIP
