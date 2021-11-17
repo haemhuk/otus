@@ -1,3 +1,29 @@
+# Docker сборка контейнеров
+
+Параметры docker файла:
+
+* ENV - переменные окружения
+* ARG - переменные во время сборки
+* COPY - скопировать файл или папку
+* ADD - скопировать файл или папку, скачать по ссылке, разархивировать архив
+* EXPOSE - документация
+* CMD/ENTRYPOINT - запустить файл/приложение
+
+Режимы работы:
+
+    ENTRYPOINT ping www.google.com
+
+или
+
+    ENTRYPOINT ["ping", "www.google.com"]Docker сборка контейнеров
+
+Комбинированное использование:
+
+    ENTRYPOINT ["ls", "/usr"]
+    CMD ["/var"]
+
+--------------------------------------------------------------------------------
+
 # Настройка docker
 
 Авторизация:
@@ -32,6 +58,10 @@
 
 # Команды работы с docker containers
 
+Загрузить контейнер:
+
+    docker pull <name>
+
 Список запущенных контейнеров:
 
     docker ps
@@ -44,10 +74,12 @@
 
     docker run -p <out-port>:<image-port> <name>
     docker run -p 3030:80 nginx
+    docker run -it -p 3030:80 nginx
 
 Запуск контейнера в виде daemon:
 
     docker run -d -p <out-port>:<image-port> <name>
+    docker run -d -p <out-port>:<image-port> --name=<docker_name> <name>
     docker run -d -p 3030:80 nginx
 
 Запуск контейнера с параметрами:
@@ -72,6 +104,14 @@
     docker stop <id>
     docker kill <id>
 
+Остановка всех контейнеров:
+
+    docker stop $(docker ps -aq)
+    docker kill $(docker ps -aq)
+
+    docker stop $(docker ps -aqf "name=<docker_name>")
+    docker kill $(docker ps -aqf "name=<docker_name>")
+
 Удаление остановленного контейнера:
 
     docker rm <id>
@@ -89,9 +129,7 @@
 
 Url:
 
-https://hub.docker.com/repositories
-
-**Create Repository**
+https://hub.docker.com/repositories -> **Create Repository**
 
 ## Сборка docker-контейнера
 
@@ -105,4 +143,5 @@ https://hub.docker.com/repositories
     docker push kaizent/otus_homework:1.0
     
     docker run -p 80:8000 kaizent/otus_homework:1.0
-
+    docker run -d -p 80:8000 kaizent/otus_homework:1.0
+    docker run -d -p 80:8000 --name=otus_homework kaizent/otus_homework:1.0

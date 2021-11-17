@@ -91,14 +91,14 @@ https://stackoverflow.com/questions/61238136/cant-start-minikube-in-ec2-shows-x-
     sudo mkdir -p /usr/local/bin/
     sudo install minikube /usr/local/bin/
     
-    minikube addons enable ingress
-    minikube addons enable dashboard
-    
     sudo apt-get install -y conntrack
 
 ## Start minikube
 
     minikube start --vm-driver=none
+    
+    minikube addons enable ingress
+    minikube addons enable dashboard
 
 ## Status minikube
 

@@ -15,3 +15,7 @@
 Запуск compose-контейнера в виде daemon:
 
     docker-compose up -d
+
+Остановка compose-контейнера:
+
+    docker-compose down

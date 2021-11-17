@@ -23,6 +23,22 @@ spec:
       containers:
         - name: map-api
           image: kaizent/otus_homework:1.0
+          env:
+            - name: RUN
+              valueFrom:
+                configMapKeyRef:
+                  name: map-api-config
+                  key: RUN
+            - name: VERSION
+              valueFrom:
+                configMapKeyRef:
+                  name: map-api-config
+                  key: VERSION
+            - name: DATABASE_URI
+              valueFrom:
+                secretKeyRef:
+                  name: map-api-secret
+                  key: DATABASE_URI
           ports:
             - name: web
               containerPort: 8000
