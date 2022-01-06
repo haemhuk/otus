@@ -29,6 +29,12 @@
     kubectl apply -f ./<dir>
     kubectl apply -f .
 
+Удалить сущность из yaml-манифест:
+
+    kubectl delete -f ./<file>.yaml
+    kubectl delete -f ./<dir>
+    kubectl delete -f .
+
 --------------------------------------------------------------------------------
 
 # Команды работы с minikube dashboard
